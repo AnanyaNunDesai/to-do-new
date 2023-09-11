@@ -10,11 +10,11 @@ const TaskList = ({
 }) => {
   return (
     <div 
-    // className='task-list flex flex-col gap-3 p-10 container bg-gray-900 mx-auto lg:max-w-4xl'
+    className='rounded-lg mt-10 task-list flex flex-col gap-3 p-10 container bg-yellow-400 mx-auto text-black lg:max-w-4xl'
     >
       {loading ? (
         <p 
-        // className='text-center'
+        className='text-center'
         >{error ? error : "Loading..."}
         </p>
       ) : (

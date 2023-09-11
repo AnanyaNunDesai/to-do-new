@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 // import Header from "./components/Header";
 import AddTask from "./components/AddTask";
 import TaskList from "./components/TaskList";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 export const DeleteHandlerContext = createContext();
 export const EditHandlerContext = createContext();
@@ -23,7 +23,7 @@ const App = () => {
   // fetching data
   const fetchingData = async () => {
     try {
-      const res = await fetch("api/tasks");
+      const res = await fetch("http://localhost:3001/api/tasks");
       if (!res.ok) throw new Error("Something went wrong!");
       const data = await res.json();
       setTasks(data);
@@ -56,7 +56,7 @@ const App = () => {
   };
 
   const deleteData = async (id) => {
-    await fetch(`api/tasks/${id}`, {
+    await fetch(`http://localhost:3001/api/tasks/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -86,7 +86,7 @@ const App = () => {
   };
 
   const puttingRequest = async (id, newData) => {
-    fetch(`api/tasks/${id}`, {
+    fetch(`http://localhost:3001/api/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -97,7 +97,7 @@ const App = () => {
 
   return (
     <div 
-    // className='wraper bg-gradient-to-t from-gray-900 to-teal-900 min-h-screen text-xl text-gray-100 flex flex-col py-10'
+    className='wrapper bg-gradient-to-t from-blue-200 to-blue-900 min-h-screen text-xl text-gray-100 flex flex-col py-10'
     >
       <DeleteHandlerContext.Provider value={handleDelete}>
         <EditHandlerContext.Provider value={handleEdit}>
@@ -111,7 +111,7 @@ const App = () => {
             editedText={editedText}
             setEditedText={setEditedText}
           />
-          {/* <Footer /> */}
+          <Footer />
         </EditHandlerContext.Provider>
       </DeleteHandlerContext.Provider>
     </div>

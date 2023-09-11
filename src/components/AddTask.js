@@ -1,4 +1,8 @@
 import { useRef, useState } from "react";
+import Bee1 from './../assets/bee1.png'
+import Bee5 from './../assets/bee5.gif'
+import Bee6 from './../assets/bee6.gif'
+
 
 const AddTask = ({ tasks, setTasks }) => {
     const [task, setTask] = useState("");
@@ -16,7 +20,7 @@ const AddTask = ({ tasks, setTasks }) => {
     // task posting
     // use "text"
     const taskPosting = async (text) => {
-        const res = await fetch("api/tasks", {
+        const res = await fetch("http://localhost:3001/api/tasks/", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -30,9 +34,24 @@ const AddTask = ({ tasks, setTasks }) => {
 
     return (
         <div>
-            <h2>Add Tasks</h2>
+            <img 
+            src={Bee1} 
+            alt='Bee1'
+            className="fixed ml-28 top-28"
+            />
+            <img 
+            src={Bee5} 
+            alt='Bee5'
+            className="fixed right-28 top-40 ml-28"
+            />
+            <h1
+            className="font-['Open_Sans'] text-yellow-700 bg-yellow-300 mb-20 
+            p-5 container mx-auto flex flex-col gap-5 justify-center rounded-lg items-center
+             md:justify-between lg:max-w-xl"
+             >Tasks To Be Completed</h1>
             <form
-                //   className='bg-gray-900 p-10 container mx-auto flex flex-col gap-5 justify-center items-center md:flex-row md:justify-between lg:max-w-4xl'
+                className='bg-orange-300 p-10 container mx-auto flex flex-col gap-5 
+                justify-center rounded-lg items-center md:flex-row md:justify-between lg:max-w-4xl'
                 onSubmit={addTaskHandler}
             >
                 <input
@@ -42,11 +61,15 @@ const AddTask = ({ tasks, setTasks }) => {
                     required
                     type='text'
                     placeholder='Start Typing'
-                // className='bg-transparent outline-none border-b-2 border-gray-500 py-2 px-5 text-center md:text-left focus:border-teal-400 duration-300'
+                className='bg-yellow-300 outline-none rounded-lg border-b-2 
+                border-yellow-500 py-2 px-5 text-orange-900 text-center 
+                md:text-left focus:border-orange-900 duration-300'
                 />
                 <button
                     type='submit'
-                // className='border-2 border-teal-500 py-2 px-5 bg-teal-500/10 text-teal-500 hover:bg-teal-500 duration-300 hover:text-gray-900 '
+                className='rounded-lg border-2 border-yellow-500 
+                py-2 px-5 bg-orange-200 text-yellow-700 
+                hover:bg-orange-500 duration-300 hover:text-yellow-300 '
                 >
                     Add task
                 </button>

@@ -1,10 +1,25 @@
+// const express = require("express");
+// const bodyParser = require("body-parser");
+
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+
+// const app = express();
+// const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+
 
 // In-memory storage for tasks
 let tasks = [];
