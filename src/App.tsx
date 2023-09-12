@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, FC, FormEvent} from "react";
 import AddTask from "./components/AddTask.tsx";
 import TaskList from "./components/TaskList.tsx";
 import Footer from "./components/Footer.js";
@@ -14,7 +14,7 @@ interface AppProps { }
 export const DeleteHandlerContext = createContext<any>(null);
 export const EditHandlerContext = createContext<any>(null);
 
-const App: React.FC<AppProps> = () => {
+const App: FC<AppProps> = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -72,7 +72,7 @@ const App: React.FC<AppProps> = () => {
   };
 
   // Editing task form handler
-  const handleEditSubmitter = (e: React.FormEvent, id: number) => {
+  const handleEditSubmitter = (e: FormEvent, id: number) => {
     e.preventDefault();
     setToggleEditMode(!toggleEditMode);
 

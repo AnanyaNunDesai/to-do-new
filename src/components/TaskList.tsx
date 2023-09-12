@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, FormEvent, FC, SetStateAction} from "react";
 import TaskItem from "./TaskItem.tsx";
 
 interface TaskListProps {
@@ -9,12 +9,12 @@ interface TaskListProps {
   }>;
   error: string | null;
   loading: boolean;
-  handleEditSubmitter: (e: React.FormEvent, id: number) => void;
+  handleEditSubmitter: (e: FormEvent, id: number) => void;
   editedText: string;
-  setEditedText: React.Dispatch<React.SetStateAction<string>>;
+  setEditedText: Dispatch<SetStateAction<string>>;
 }
 
-const TaskList: React.FC<TaskListProps> = ({
+const TaskList: FC<TaskListProps> = ({
   tasks,
   error,
   loading,

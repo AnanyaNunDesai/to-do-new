@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { FC, FormEvent, Dispatch, SetStateAction} from 'react'
 import { useContext, useState } from "react";
 import { DeleteHandlerContext, EditHandlerContext } from "../App.tsx";
 
@@ -8,12 +8,12 @@ interface TaskItemProps {
     text: string;
     isEditable: boolean;
   };
-  handleEditSubmitter: (e: React.FormEvent, id: number) => void;
+  handleEditSubmitter: (e: FormEvent, id: number) => void;
   editedText: string;
-  setEditedText: React.Dispatch<React.SetStateAction<string>>;
+  setEditedText: Dispatch<SetStateAction<string>>;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, handleEditSubmitter, editedText, setEditedText }) => {
+const TaskItem: FC<TaskItemProps> = ({ task, handleEditSubmitter, editedText, setEditedText }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const handleDelete = useContext<DeleteHandlerContext | undefined>(DeleteHandlerContext);
   const handleEdit = useContext<EditHandlerContext | undefined>(EditHandlerContext);

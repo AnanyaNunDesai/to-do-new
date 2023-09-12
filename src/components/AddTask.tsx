@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import * as React from 'react'
+import React, { useRef, useState, FC, FormEvent } from "react";
 import Bee1 from './../assets/bee1.png'
 import Bee5 from './../assets/bee5.gif'
 import Bee6 from './../assets/bee6.gif'
@@ -9,12 +8,12 @@ interface AddTaskProps {
   setTasks: (tasks: string[]) => void;
 }
 
-const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
+const AddTask: FC<AddTaskProps> = ({ tasks, setTasks }) => {
   const [task, setTask] = useState<string>("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // add task handler event
-  const addTaskHandler = (e: React.FormEvent) => {
+  const addTaskHandler = (e: FormEvent) => {
     e.preventDefault();
     // post task into server
     taskPosting(task);
