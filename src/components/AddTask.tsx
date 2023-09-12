@@ -59,7 +59,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
           alt='Bee6'
           className="w-10"
         />
-        <h1>Tasks To Be Completed</h1>
+        <h1>✏️Tasks To Be Completed✏️</h1>
       </div>
       <form
         className='bg-orange-300 p-10 container mx-auto flex flex-col gap-5 
@@ -75,7 +75,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
           placeholder='Start Typing'
           className='bg-yellow-300 outline-none rounded-lg border-b-2 
                 border-yellow-500 py-2 px-5 text-orange-900 text-center 
-                md:text-left focus:border-orange-900 duration-300'
+                md:text-left focus:border-orange-900 duration-300 placeholder-yellow-500 placeholder-opacity-75'
         />
         <button
           type='submit'
