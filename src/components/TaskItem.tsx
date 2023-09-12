@@ -4,9 +4,9 @@ import { DeleteHandlerContext, EditHandlerContext } from "../App.tsx";
 
 interface TaskItemProps {
   task: {
-    id: number; 
-    text: string; 
-    isEditable: boolean; 
+    id: number;
+    text: string;
+    isEditable: boolean;
   };
   handleEditSubmitter: (e: React.FormEvent, id: number) => void;
   editedText: string;
@@ -15,17 +15,17 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, handleEditSubmitter, editedText, setEditedText }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const handleDelete = useContext<typeof DeleteHandlerContext | undefined>(DeleteHandlerContext);
-  const handleEdit = useContext<typeof EditHandlerContext | undefined>(EditHandlerContext);
+  const handleDelete = useContext<DeleteHandlerContext | undefined>(DeleteHandlerContext);
+  const handleEdit = useContext<EditHandlerContext | undefined>(EditHandlerContext);
 
   return (
-    <div 
+    <div
       className='task-item flex justify-between items-center bg-gradient-to-r from-yellow-500 to-gray-950 p-5 rounded hover:from-orange-700 hover:to-yellow-800 group'
     >
-      <div 
+      <div
         className='task-item-left flex gap-3'
       >
-        <span 
+        <span
           className='self-center'
         >
           <input
@@ -50,18 +50,17 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, handleEditSubmitter, editedTe
 
         {!task.isEditable && (
           <p
-            className={`group-hover:text-yellow-400 ${
-              isChecked
+            className={`group-hover:text-yellow-400 ${isChecked
                 ? "line-through text-gray-500 group-hover:text-orange-300"
                 : ""
-            }`}
+              }`}
           >
             {task.text}
           </p>
         )}
       </div>
 
-      <div 
+      <div
         className='task-item-right flex gap-3 text-yellow-200'
       >
         <button onClick={() => handleEdit && handleEdit(task.id)}>
@@ -77,4 +76,3 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, handleEditSubmitter, editedTe
 };
 
 export default TaskItem;
-

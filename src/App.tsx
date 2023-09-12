@@ -4,12 +4,12 @@ import TaskList from "./components/TaskList.tsx";
 import Footer from "./components/Footer.js";
 
 interface Task {
-  id: number; 
-  text: string; 
-  isEditable: boolean; 
+  id: number;
+  text: string;
+  isEditable: boolean;
 }
 
-interface AppProps {}
+interface AppProps { }
 
 export const DeleteHandlerContext = createContext<any>(null);
 export const EditHandlerContext = createContext<any>(null);

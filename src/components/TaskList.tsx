@@ -4,12 +4,12 @@ import TaskItem from "./TaskItem.tsx";
 interface TaskListProps {
   tasks: Array<{
     id: number;
-    text: string; 
-    isEditable: boolean; 
+    text: string;
+    isEditable: boolean;
   }>;
   error: string | null;
   loading: boolean;
-  handleEditSubmitter: (e: React.FormEvent, id: number) => void; 
+  handleEditSubmitter: (e: React.FormEvent, id: number) => void;
   editedText: string;
   setEditedText: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -23,11 +23,11 @@ const TaskList: React.FC<TaskListProps> = ({
   setEditedText,
 }) => {
   return (
-    <div 
+    <div
       className='rounded-lg mt-10 task-list flex flex-col gap-3 p-10 container bg-yellow-400 mx-auto text-black lg:max-w-4xl'
     >
       {loading ? (
-        <p 
+        <p
           className='text-center'
         >{error ? error : "Loading..."}
         </p>

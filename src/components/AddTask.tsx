@@ -5,8 +5,8 @@ import Bee5 from './../assets/bee5.gif'
 import Bee6 from './../assets/bee6.gif'
 
 interface AddTaskProps {
-  tasks: string[]; 
-  setTasks: (tasks: string[]) => void; 
+  tasks: string[];
+  setTasks: (tasks: string[]) => void;
 }
 
 const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
@@ -23,7 +23,6 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
   };
 
   // task posting
-  // use "text"
   const taskPosting = async (text: string) => {
     const res = await fetch("http://localhost:3001/api/tasks/", {
       method: "POST",
@@ -59,7 +58,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
           alt='Bee6'
           className="w-10"
         />
-        <h1>✏️Tasks To Be Completed✏️</h1>
+        <h1 className="text-3xl">✏️Tasks To Be Completed✏️</h1>
       </div>
       <form
         className='bg-orange-300 p-10 container mx-auto flex flex-col gap-5 
@@ -81,7 +80,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks }) => {
           type='submit'
           className='rounded-lg border-2 border-yellow-500 
                 py-2 px-5 bg-orange-200 text-yellow-700 
-                hover:bg-orange-500 duration-300 hover:text-yellow-300 '
+                hover:bg-orange-500 duration-300 hover:text-yellow-300'
         >
           Add task
         </button>
