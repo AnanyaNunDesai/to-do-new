@@ -1,19 +1,26 @@
-import { createContext, useEffect, useState } from "react";
-// import Header from "./components/Header";
-import AddTask from "./components/AddTask";
-import TaskList from "./components/TaskList";
-import Footer from "./components/Footer";
+import React, { createContext, useEffect, useState } from "react";
+import AddTask from "./components/AddTask.tsx";
+import TaskList from "./components/TaskList.tsx";
+import Footer from "./components/Footer.js";
 
-export const DeleteHandlerContext = createContext();
-export const EditHandlerContext = createContext();
+interface Task {
+  id: number; 
+  text: string; 
+  isEditable: boolean; 
+}
 
-const App = () => {
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+interface AppProps {}
 
-  const [editedText, setEditedText] = useState("");
-  const [toggleEditMode, setToggleEditMode] = useState(true);
+export const DeleteHandlerContext = createContext<any>(null);
+export const EditHandlerContext = createContext<any>(null);
+
+const App: React.FC<AppProps> = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+
+  const [editedText, setEditedText] = useState<string>("");
+  const [toggleEditMode, setToggleEditMode] = useState<boolean>(true);
 
   useEffect(() => {
     // getting data from the server
@@ -25,7 +32,7 @@ const App = () => {
     try {
       const res = await fetch("http://localhost:3001/api/tasks");
       if (!res.ok) throw new Error("Something went wrong!");
-      const data = await res.json();
+      const data: Task[] = await res.json();
       setTasks(data);
       setLoading(false);
     } catch (error) {
@@ -33,29 +40,29 @@ const App = () => {
     }
   };
 
-  //Delete event
-  const handleDelete = (id) => {
+  // Delete event
+  const handleDelete = (id: number) => {
     // delete data
     deleteData(id);
-    //set updated tasks
+    // set updated tasks
     setTasks(tasks.filter((task) => id !== task.id));
   };
 
-  //Editing Event
-  const handleEdit = (id) => {
+  // Editing Event
+  const handleEdit = (id: number) => {
     const [editableTarget] = tasks.filter((task) => id === task.id);
     editableTarget.isEditable = true;
     setEditedText(editableTarget.text);
     setTasks([...tasks]);
     setToggleEditMode(false);
 
-    //Re-arrange
+    // Re-arrange
     tasks
       .filter((task) => task.id !== id)
       .map((targetedEl) => (targetedEl.isEditable = false));
   };
 
-  const deleteData = async (id) => {
+  const deleteData = async (id: number) => {
     await fetch(`http://localhost:3001/api/tasks/${id}`, {
       method: "DELETE",
       headers: {
@@ -64,28 +71,28 @@ const App = () => {
     });
   };
 
-  //Editing task form handler
-  const handleEditSubmitter = (e, id) => {
+  // Editing task form handler
+  const handleEditSubmitter = (e: React.FormEvent, id: number) => {
     e.preventDefault();
     setToggleEditMode(!toggleEditMode);
 
-    //Persist data
+    // Persist data
     const editPersistance = {
       text: editedText,
       id: id,
     };
 
-    //Puting request
+    // Putting request
     puttingRequest(id, editPersistance);
 
-    //Real time update
+    // Real-time update
     const [editableTarget] = tasks.filter((task) => id === task.id);
     editableTarget.isEditable = false;
     editableTarget.text = editPersistance.text;
     setTasks([...tasks]);
   };
 
-  const puttingRequest = async (id, newData) => {
+  const puttingRequest = async (id: number, newData: any) => {
     fetch(`http://localhost:3001/api/tasks/${id}`, {
       method: "PUT",
       headers: {
@@ -96,12 +103,9 @@ const App = () => {
   };
 
   return (
-    <div 
-    className='wrapper bg-gradient-to-t from-blue-200 to-blue-900 min-h-screen text-xl text-gray-100 flex flex-col py-10'
-    >
+    <div className='wrapper bg-gradient-to-t from-blue-200 to-blue-900 min-h-screen text-xl text-gray-100 flex flex-col py-10'>
       <DeleteHandlerContext.Provider value={handleDelete}>
         <EditHandlerContext.Provider value={handleEdit}>
-          {/* <Header /> */}
           <AddTask tasks={tasks} setTasks={setTasks} />
           <TaskList
             tasks={tasks}
