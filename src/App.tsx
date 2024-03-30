@@ -30,7 +30,7 @@ const App: FC<AppProps> = () => {
   // fetching data
   const fetchingData = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/tasks");
+      const res = await fetch("http://localhost:3002/api/tasks");
       if (!res.ok) throw new Error("Something went wrong!");
       const data: Task[] = await res.json();
       setTasks(data);
@@ -63,7 +63,7 @@ const App: FC<AppProps> = () => {
   };
 
   const deleteData = async (id: number) => {
-    await fetch(`http://localhost:3001/api/tasks/${id}`, {
+    await fetch(`http://localhost:3002/api/tasks/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -93,7 +93,7 @@ const App: FC<AppProps> = () => {
   };
 
   const puttingRequest = async (id: number, newData: any) => {
-    fetch(`http://localhost:3001/api/tasks/${id}`, {
+    fetch(`http://localhost:3002/api/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

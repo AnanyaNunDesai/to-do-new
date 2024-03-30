@@ -23,7 +23,7 @@ const AddTask: FC<AddTaskProps> = ({ tasks, setTasks }) => {
 
   // task posting
   const taskPosting = async (text: string) => {
-    const res = await fetch("http://localhost:3001/api/tasks/", {
+    const res = await fetch("http://localhost:3002/api/tasks/", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
